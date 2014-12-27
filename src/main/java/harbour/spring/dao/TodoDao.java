@@ -9,6 +9,8 @@ public interface TodoDao {
 	public List<Todo> findAll();
 
 	public void insert(Todo todo);
+	
+	public Number insertAndReturnKey(Todo todo);
 
 	public void update(Todo todo);
 

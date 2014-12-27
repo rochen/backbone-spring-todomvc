@@ -15,7 +15,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 
 public class JdbcTodoDao implements TodoDao, InitializingBean {
 	final static Logger logger = LoggerFactory.getLogger(JdbcTodoDao.class);
@@ -44,6 +48,18 @@ public class JdbcTodoDao implements TodoDao, InitializingBean {
 		paramMap.put("completed", todo.getCompleted());
 		
 		jdbcTemplate.update(sql, paramMap);
+	}
+	
+	@Override
+	public Number insertAndReturnKey(Todo todo) {
+		String sql = "insert into Todo (todo, completed) values (:todo, :completed)";
+		
+		SqlParameterSource paramSource = new BeanPropertySqlParameterSource(todo);
+		
+		KeyHolder generatedKeyHolder = new GeneratedKeyHolder();
+		jdbcTemplate.update(sql, paramSource, generatedKeyHolder);
+		
+		return generatedKeyHolder.getKey();
 	}
 
 	@Override

@@ -8,10 +8,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.MethodSorters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
@@ -36,6 +34,21 @@ public class TodoDaoTest extends AbstractJUnit4SpringContextTests {
 		todoDao.insert(todo);
 		
 		int after = todoDao.findAll().size();
+		logger.info("before:{}, after:{}", before, after);
+		assertEquals(1, after - before);
+	}
+	
+	@Test
+	public void insertAndReturnKeyTest() {
+		int before = todoDao.findAll().size();
+		
+		Todo todo = new Todo();
+		todo.setTodo("junit insert and return key test");
+		todo.setCompleted(Boolean.FALSE);		
+		Number key = todoDao.insertAndReturnKey(todo);
+		logger.info("key:[{}]", key);
+		
+		int after = todoDao.findAll().size();	
 		logger.info("before:{}, after:{}", before, after);
 		assertEquals(1, after - before);
 	}
