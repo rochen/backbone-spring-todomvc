@@ -1,10 +1,8 @@
 package hello.web;
 
 import harbour.spring.dao.TodoDao;
-import harbour.spring.domain.Todo;
 
 import java.util.Date;
-import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,17 +26,4 @@ public class HelloController {
         return "hello";
     }
     
-
-    @RequestMapping("/dao")
-    public String dao(Model model) {
-    	List<Todo> todos = todoDao.findAll();
-    	for(Todo todo: todos) {
-    		logger.info("{}", todo);
-    	}
-    	
-        Date now = new Date();
-        logger.info("my call hello to get serverTime [{}]", now);
-        model.addAttribute("serverTime", now);
-        return "hello";
-    }
 }
