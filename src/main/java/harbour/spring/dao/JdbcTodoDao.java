@@ -8,8 +8,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.sql.DataSource;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.BeanCreationException;
@@ -24,12 +22,10 @@ import org.springframework.jdbc.support.KeyHolder;
 public class JdbcTodoDao implements TodoDao, InitializingBean {
 	final static Logger logger = LoggerFactory.getLogger(JdbcTodoDao.class);
 	
-	private DataSource dataSource;
 	private NamedParameterJdbcTemplate jdbcTemplate;
 	
-	public void setDataSource(DataSource dataSource) {
-		this.dataSource = dataSource;
-		this.jdbcTemplate = new NamedParameterJdbcTemplate(this.dataSource);
+	public void setJdbcTemplate(NamedParameterJdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
 	}
 	
 	@Override
@@ -96,9 +92,8 @@ public class JdbcTodoDao implements TodoDao, InitializingBean {
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
-		// TODO Auto-generated method stub
-		if (dataSource == null) {
-			throw new BeanCreationException("must set dataSource on TodoDao");
+		if (jdbcTemplate == null) {
+			throw new BeanCreationException("must set jdbcTemplate in TodoDao");
 		}
 	}
 	
