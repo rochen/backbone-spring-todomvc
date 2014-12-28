@@ -13,7 +13,9 @@
 
 	<import resource="classpath:data-source.xml" />
 
-	<context:component-scan base-package="hello.web, harbour.spring" />
+	<context:component-scan base-package="hello.web, 
+										  harbour.spring.web, 
+										  harbour.spring.service" />
 
 	<mvc:annotation-driven />
 
