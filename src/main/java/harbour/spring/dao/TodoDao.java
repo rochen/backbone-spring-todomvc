@@ -8,13 +8,13 @@ public interface TodoDao {
 
 	public List<Todo> findAll();
 
-	public void insert(Todo todo);
+	public int insert(Todo todo);
 	
 	public Number insertAndReturnKey(Todo todo);
 
-	public void update(Todo todo);
+	public int update(Todo todo);
 
-	public void delete(Long id);
+	public int delete(Long id);
 	
 	public Todo getTodoById(Long id);
 }

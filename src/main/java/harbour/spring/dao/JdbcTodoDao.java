@@ -36,14 +36,14 @@ public class JdbcTodoDao implements TodoDao, InitializingBean {
 	}
 
 	@Override
-	public void insert(Todo todo) {
+	public int insert(Todo todo) {
 		String sql = "insert into Todo (todo, completed) values (:todo, :completed)";
 		
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("todo",  todo.getTodo());
 		paramMap.put("completed", todo.getCompleted());
 		
-		jdbcTemplate.update(sql, paramMap);
+		return jdbcTemplate.update(sql, paramMap);
 	}
 	
 	@Override
@@ -53,13 +53,13 @@ public class JdbcTodoDao implements TodoDao, InitializingBean {
 		SqlParameterSource paramSource = new BeanPropertySqlParameterSource(todo);
 		
 		KeyHolder generatedKeyHolder = new GeneratedKeyHolder();
-		jdbcTemplate.update(sql, paramSource, generatedKeyHolder);
+		int count = jdbcTemplate.update(sql, paramSource, generatedKeyHolder);
 		
-		return generatedKeyHolder.getKey();
+		return count == 1? generatedKeyHolder.getKey(): -1;
 	}
 
 	@Override
-	public void update(Todo todo) {
+	public int update(Todo todo) {
 		String sql = "update Todo set todo = :todo, completed = :completed where id = :id";
 		
 		Map<String, Object> paramMap = new HashMap<String, Object>();
@@ -67,17 +67,17 @@ public class JdbcTodoDao implements TodoDao, InitializingBean {
 		paramMap.put("completed", todo.getCompleted());
 		paramMap.put("id", todo.getId());
 		
-		jdbcTemplate.update(sql, paramMap);
+		return jdbcTemplate.update(sql, paramMap);
 	}
 
 	@Override
-	public void delete(Long id) {
+	public int delete(Long id) {
 		String sql = "delete from Todo where id = :id";
 		
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("id", id);
 		
-		jdbcTemplate.update(sql, paramMap);		
+		return jdbcTemplate.update(sql, paramMap);		
 	}
 	
 	@Override
