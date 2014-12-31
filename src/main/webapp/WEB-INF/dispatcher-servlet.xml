@@ -18,6 +18,8 @@
 										  harbour.spring.service" />
 
 	<mvc:annotation-driven />
+	
+	<mvc:default-servlet-handler/>
 
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
