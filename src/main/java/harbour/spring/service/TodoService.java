@@ -27,8 +27,7 @@ public class TodoService {
 		todoDao.update(todo);
 	}
 	
-	public void deleteTodo(Todo todo) {
-		Long key = todo.getId();
-		todoDao.delete(key);
+	public void deleteTodo(Long id) {
+		todoDao.delete(id);
 	}
 }
