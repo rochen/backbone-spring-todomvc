@@ -37,10 +37,10 @@ public class JdbcTodoDao implements TodoDao, InitializingBean {
 
 	@Override
 	public int insert(Todo todo) {
-		String sql = "insert into Todo (todo, completed) values (:todo, :completed)";
+		String sql = "insert into Todo (title, completed) values (:title, :completed)";
 		
 		Map<String, Object> paramMap = new HashMap<String, Object>();
-		paramMap.put("todo",  todo.getTodo());
+		paramMap.put("title",  todo.getTitle());
 		paramMap.put("completed", todo.getCompleted());
 		
 		return jdbcTemplate.update(sql, paramMap);
@@ -48,7 +48,7 @@ public class JdbcTodoDao implements TodoDao, InitializingBean {
 	
 	@Override
 	public Number insertAndReturnKey(Todo todo) {
-		String sql = "insert into Todo (todo, completed) values (:todo, :completed)";
+		String sql = "insert into Todo (title, completed) values (:title, :completed)";
 		
 		SqlParameterSource paramSource = new BeanPropertySqlParameterSource(todo);
 		
@@ -60,10 +60,10 @@ public class JdbcTodoDao implements TodoDao, InitializingBean {
 
 	@Override
 	public int update(Todo todo) {
-		String sql = "update Todo set todo = :todo, completed = :completed where id = :id";
+		String sql = "update Todo set title = :title, completed = :completed where id = :id";
 		
 		Map<String, Object> paramMap = new HashMap<String, Object>();
-		paramMap.put("todo",  todo.getTodo());
+		paramMap.put("title",  todo.getTitle());
 		paramMap.put("completed", todo.getCompleted());
 		paramMap.put("id", todo.getId());
 		
@@ -103,7 +103,7 @@ public class JdbcTodoDao implements TodoDao, InitializingBean {
 		public Todo mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Todo todo = new Todo();
 			todo.setId(rs.getLong("id"));
-			todo.setTodo(rs.getString("todo"));
+			todo.setTitle(rs.getString("title"));
 			todo.setCompleted(rs.getBoolean("completed"));
 			
 			return todo;

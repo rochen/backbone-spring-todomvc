@@ -29,7 +29,7 @@ public class TodoDaoTest extends AbstractJUnit4SpringContextTests {
 		int before = todoDao.findAll().size();
 		
 		Todo todo = new Todo();
-		todo.setTodo("junit insert test");
+		todo.setTitle("junit insert test");
 		todo.setCompleted(Boolean.FALSE);		
 		todoDao.insert(todo);
 		
@@ -43,7 +43,7 @@ public class TodoDaoTest extends AbstractJUnit4SpringContextTests {
 		int before = todoDao.findAll().size();
 		
 		Todo todo = new Todo();
-		todo.setTodo("junit insert and return key test");
+		todo.setTitle("junit insert and return key test");
 		todo.setCompleted(Boolean.FALSE);		
 		Number key = todoDao.insertAndReturnKey(todo);
 		logger.info("key:[{}]", key);
@@ -75,14 +75,14 @@ public class TodoDaoTest extends AbstractJUnit4SpringContextTests {
 		
 		Todo todo = new Todo();
 		todo.setId(id);
-		todo.setTodo("updateupdate");
+		todo.setTitle("updateupdate");
 		todo.setCompleted(Boolean.FALSE);		
 		todoDao.update(todo);
 		
 		Todo after = todoDao.getTodoById(id);
-		logger.info("after:{}", after.getTodo());
+		logger.info("after:{}", after.getTitle());
 		assertEquals(id, after.getId());
-		assertEquals("updateupdate", after.getTodo());
+		assertEquals("updateupdate", after.getTitle());
 	}
 	
 	@Test
