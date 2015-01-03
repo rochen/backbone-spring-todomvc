@@ -26,14 +26,14 @@
 		</footer>
 		<script type="text/template" id="item-template">
 			<div class="view">
-				<input class="toggle" type="checkbox" <@= completed ? 'checked' : '' @>>
-				<label><@- title @></label>
+				<input class="toggle" type="checkbox" {{#completed}}checked{{/completed}} >
+				<label>{{ title }}</label>
 				<button class="destroy"></button>
 			</div>
-			<input class="edit" value="<@- title @>">
+			<input class="edit" value="{{ title }}">
 		</script>
 		<script type="text/template" id="stats-template">
-			<span id="todo-count"><strong><@= remaining @></strong> <@= remaining === 1 ? 'item' : 'items' @> left</span>
+			<span id="todo-count"><strong>{{ remaining }}</strong> item{{#compare remaining ">" 1}}s{{/compare}} left</span>
 			<ul id="filters">
 				<li>
 					<a class="selected" href="#/">All</a>
@@ -45,15 +45,17 @@
 					<a href="#/completed">Completed</a>
 				</li>
 			</ul>
-			<@ if (completed) { @>
-			<button id="clear-completed">Clear completed (<@= completed @>)</button>
-			<@ } @>
+			
+			{{#if completed}}
+			<button id="clear-completed">Clear completed ({{ completed }})</button>
+			{{/if}}
 		</script>
 
 		
 		<script src="bower_components/jquery/dist/jquery.js"></script>
 		<script src="bower_components/underscore/underscore.js"></script>
 		<script src="bower_components/backbone/backbone.js"></script>
+		<script src="bower_components/handlebars-v2.0.0.js"></script>
 		<script src="js/template.js"></script>
 		<script src="js/models/todo.js"></script>
 		<script src="js/collections/todos.js"></script>
