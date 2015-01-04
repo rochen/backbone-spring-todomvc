@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HelloController {
     final static Logger logger = LoggerFactory.getLogger(HelloController.class);
     
-    @RequestMapping("/hello")
+    @RequestMapping("/")
     public String hello(Model model) {
         Date now = new Date();
         logger.info("call hello to get serverTime [{}]", now);
