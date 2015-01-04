@@ -55,8 +55,8 @@
 		<script src="bower_components/jquery/dist/jquery.js"></script>
 		<script src="bower_components/underscore/underscore.js"></script>
 		<script src="bower_components/backbone/backbone.js"></script>
-		<script src="bower_components/handlebars-v2.0.0.js"></script>
-		<script src="js/template.js"></script>
+		<script src="bower_components/handlebars/handlebars.js"></script>
+		<script src="js/utils/handlebars-helpers.js"></script>
 		<script src="js/models/todo.js"></script>
 		<script src="js/collections/todos.js"></script>
 		<script src="js/views/todo-view.js"></script>
