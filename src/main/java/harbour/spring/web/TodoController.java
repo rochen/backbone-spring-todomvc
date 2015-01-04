@@ -25,32 +25,27 @@ public class TodoController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String index() {
-		logger.info("index()");
 		return "todo/index";
 	}
 	
 	@RequestMapping(value = "/api", method = RequestMethod.GET)
 	public @ResponseBody List<Todo> list() {
-		logger.info("Listing todos");
 		return todoService.getAllTodo();
 	}
 	
 	@RequestMapping(value = "/api/{id}", method = RequestMethod.PUT)
 	public @ResponseBody Todo edit(@PathVariable Long id, @RequestBody Todo todo) {
-		logger.info("edit todos");
 		todoService.updateTodo(todo);
 		return todo;
 	}
 	
 	@RequestMapping(value = "/api/{id}", method = RequestMethod.DELETE)
 	public @ResponseBody void delete(@PathVariable Long id) {
-		logger.info("delete todos");
 		todoService.deleteTodo(id);
 	}
 	
 	@RequestMapping(value = "/api", method = RequestMethod.POST)
 	public @ResponseBody Todo save(@RequestBody Todo todo) {
-		logger.info("save todos");
 		Long id = todoService.createTodo(todo);
 		todo.setId(id);
 		return todo;
