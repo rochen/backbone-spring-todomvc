@@ -48,7 +48,7 @@ public class TodoController {
 		todoService.deleteTodo(id);
 	}
 	
-	@RequestMapping(value = "/api/", method = RequestMethod.POST)
+	@RequestMapping(value = "/api", method = RequestMethod.POST)
 	public @ResponseBody Todo save(@RequestBody Todo todo) {
 		logger.info("save todos");
 		Long id = todoService.createTodo(todo);
