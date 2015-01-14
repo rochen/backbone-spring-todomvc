@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-	- DispatcherServlet application context for PetClinic's web tier.
--->
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
@@ -24,7 +21,5 @@
 		<property name="templateEngine" ref="templateEngine" />
 		<property name="characterEncoding" value="UTF-8" />
 	</bean>  
-
-         
 
 </beans>
