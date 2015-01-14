@@ -1,19 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!doctype html>
-<html lang="en" data-framework="backbonejs">
+<html lang="en" data-framework="backbonejs" xmlns:th="http://www.thymeleaf.org">
 	<head>
-		<meta charset="utf-8">
+		<meta charset="utf-8"/>
 		<title>Backbone.js • TodoMVC</title>
-		<link rel="stylesheet" href="bower_components/todomvc-common/base.css">
+		<link rel="stylesheet" href="bower_components/todomvc-common/base.css"/>
 	</head>
 	<body>
 		<section id="todoapp">
 			<header id="header">
 				<h1>todos</h1>
-				<input id="new-todo" placeholder="What needs to be done?" autofocus>
+				<input id="new-todo" placeholder="What needs to be done?" autofocus="autofocus"/>
 			</header>
 			<section id="main">
-				<input id="toggle-all" type="checkbox">
+				<input id="toggle-all" type="checkbox"/>
 				<label for="toggle-all">Mark all as complete</label>
 				<ul id="todo-list"></ul>
 			</section>
@@ -26,11 +26,11 @@
 		</footer>
 		<script type="text/template" id="item-template">
 			<div class="view">
-				<input class="toggle" type="checkbox" {{#completed}}checked{{/completed}} >
+				<input class="toggle" type="checkbox" {{#completed}}checked{{/completed}} />
 				<label>{{ title }}</label>
 				<button class="destroy"></button>
 			</div>
-			<input class="edit" value="{{ title }}">
+			<input class="edit" value="{{ title }}" />
 		</script>
 		<script type="text/template" id="stats-template">
 			<span id="todo-count"><strong>{{ remaining }}</strong> item{{#compare remaining ">" 1}}s{{/compare}} left</span>
